@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hw1</title>
+  <style type="text/css">
+    input
+    {
+      background: red;
+    }
+    .deletion
+    {
+      float: right;
+    }
+    li
+    {
+      /*background: yellow;*/
+    }
+  </style>
+
+</head>
+  <script type="text/javascript">
+  var listbox=document.getElementById("listbox");
+  var input=document.getElementById("input");
+  var counter=0;
+  var f=function(e)
+  {
+    if(e.key=="Enter")
+    {
+      var list= document.createElement("li");
+      list.id="li"+String(counter);
+      counter=counter+1;
+      list.innerHTML=input.value;
+      listbox.appendChild(list);
+      input.value="";
+    }
+  };
+
+  listbox.addEventListener('mouseover',function(){console.log(event);});
+  </script>
+<body> 
+  <input id="input" type="text" name="input" placeholder="what need to be done?" onkeypress="return f(event)">
+  <ul id="listbox">
+    <li>default</li>
+  </ul>
+
+
+
+</body>
+</html>

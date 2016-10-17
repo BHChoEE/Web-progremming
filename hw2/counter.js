@@ -6,6 +6,3 @@ function counter() {
     decrease() { count -= 1; },
   };
 }
-
-var a=counter()
-console.log(a.getCount());

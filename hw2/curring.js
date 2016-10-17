@@ -5,5 +5,3 @@ function curringSum(a) {
     };
   };
 }
-const x = curringSum(100)(25);
-console.log(x(10));

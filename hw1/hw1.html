@@ -1,0 +1,127 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>hw1</title>
+  <style type="text/css">
+    input
+    {
+    }
+    .deletion
+    {
+      float: right;
+      display: inline-block;
+    }
+    li:hover
+    {
+      background: skyblue;
+    }
+    li
+    {
+      list-style-type:none;
+    }
+    .complete
+    {
+      margin-right: 20px;
+      display: inline-block;
+    }
+    .cross
+    {
+      margin-right: 20px;
+    }
+    .completed
+    {
+      background: gray;
+      text-decoration: line-through;
+    }
+    .active
+    {
+
+    }
+  </style>
+</head>
+<body> 
+  <input id="input" type="text" name="input" placeholder="what need to be done?" onkeypress="return f(event)">
+  <ul id="listbox">
+  </ul>
+</body>
+  <script type="text/javascript">
+  var listbox=document.getElementById("listbox");
+  var input=document.getElementById("input");
+  var f=function(e)
+  {
+    if(e.key=="Enter")
+    {
+      var list= document.createElement("li");
+      list.className="active";
+      var text=document.createTextNode(input.value);
+      var complete=document.createElement("div");
+      complete.innerHTML="O";
+      complete.className="complete";
+      list.appendChild(complete);
+      list.appendChild(text);
+      listbox.appendChild(list);
+      input.value="";
+      state.innerHTML="active:"+active.length+"<br>"+"completed:"+completed.length;
+    }
+  };
+  var thecross=document.createElement("div");
+  thecross.innerHTML="X";
+  thecross.style.float="right";
+  thecross.style.display="inline-block";
+  thecross.className="cross";
+  var the_li_has_the_cross;
+  listbox.addEventListener('mouseover',function()
+  {
+    
+    if(event.target.nodeName=="LI")
+    {
+      the_li_has_the_cross=event.target;
+      the_li_has_the_cross.appendChild(thecross);
+    }
+  });
+  listbox.addEventListener("mouseleave",function()
+  {
+    var t=event.target;
+    the_li_has_the_cross.removeChild(thecross);    
+  });
+  listbox.addEventListener("click",function()
+  {
+    var t=event.target;
+    if(t.className=="complete")
+    {
+      if(t.parentElement.className=="active")
+      {
+        t.innerHTML="V";
+        t.parentElement.className="completed";
+        state.innerHTML="active:"+active.length+"<br>"+"completed:"+completed.length;
+      }
+      else
+      {
+        t.innerHTML="O";
+        t.parentElement.className="active";
+        state.innerHTML="active:"+active.length+"<br>"+"completed:"+completed.length;
+      }
+    }
+  });
+  thecross.addEventListener("click",function()
+  {
+    var t=event.target.parentElement;
+    if(t.nodeName=="LI")
+      listbox.removeChild(t);
+    state.innerHTML="active:"+active.length+"<br>"+"completed:"+completed.length;
+      //listbox.removeChild(the_li_has_the_cross); cant!
+      //the the_li_has_the_cross == cross!!!
+  });
+  var active = document.getElementsByClassName("active");
+  var completed = document.getElementsByClassName("completed");
+  var state=document.createElement("div");
+  state.innerHTML="active:"+active.length+"<br>"+"completed:"+completed.length;
+  var body=document.body;
+  body.appendChild(state);
+  </script>
+</html>

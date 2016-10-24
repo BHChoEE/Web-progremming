@@ -139,6 +139,8 @@ var TodoApp = function (_Component3) {
       } else if (t.className === "delete") {
         this.state.todoitems.splice(t.parentElement.id, 1);
         this.setState({ todoitems: this.state.todoitems });
+        this.state.done.splice(t.parentElement.id, 1);
+        this.setState({ done: this.state.done });
         // this.setState({todoitems: this.state.todoitems.filter((v, i) => i !== Number(t.parentElement.id))});
       }
     }

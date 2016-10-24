@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>React</title>
+   <style type="text/css">
+	p
+	{
+		display: inline-block;
+		/*background: red;*/
+	}
+	.delete
+	{
+		float:right;
+	}
+	.active
+	{
+		width:400px;
+	}
+    .completed
+    {
+	    width:400px;
+	    background: gray;
+	    text-decoration: line-through;
+	    /*font-size: 300px;*/
+    }
+	.todoitem:hover
+	{
+		background: skyblue
+	}
+	.todoitem
+	{
+		width:400px;
+	}
+	.display
+	{
+		margin-right: 20px;
+	}
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+  <script src="https://unpkg.com/react@15.3.2/dist/react.js"></script>
+  <script src="https://unpkg.com/react-dom@15.3.2/dist/react-dom.js"></script>
+  <script src="/dist/index.js"></script>
+</body>
+</html>

@@ -25,6 +25,39 @@ var CountDisplay = function (_Component) {
     return _this;
   }
 
+  _createClass(CountDisplay, [{
+    key: "render",
+    value: function render() {
+      var _this2 = this;
+
+      return React.createElement(
+        "div",
+        null,
+        React.createElement(
+          "button",
+          { type: "button", className: "display", onClick: function onClick() {
+              return _this2.props.display_filter("All");
+            } },
+          "Display All"
+        ),
+        React.createElement(
+          "button",
+          { type: "button", className: "display", onClick: function onClick() {
+              return _this2.props.display_filter("Completed");
+            } },
+          "Completed"
+        ),
+        React.createElement(
+          "button",
+          { type: "button", className: "display", onClick: function onClick() {
+              return _this2.props.display_filter("Actived");
+            } },
+          "Actived"
+        )
+      );
+    }
+  }]);
+
   return CountDisplay;
 }(Component);
 
@@ -34,13 +67,13 @@ var TodoItem = function (_Component2) {
   function TodoItem(props) {
     _classCallCheck(this, TodoItem);
 
-    var _this2 = _possibleConstructorReturn(this, (TodoItem.__proto__ || Object.getPrototypeOf(TodoItem)).call(this, props));
+    var _this3 = _possibleConstructorReturn(this, (TodoItem.__proto__ || Object.getPrototypeOf(TodoItem)).call(this, props));
 
-    _this2.state = {
+    _this3.state = {
       value: props.value
     };
     // this.state.value is broken!!
-    return _this2;
+    return _this3;
   }
 
   _createClass(TodoItem, [{
@@ -80,16 +113,16 @@ var TodoApp = function (_Component3) {
   function TodoApp() {
     _classCallCheck(this, TodoApp);
 
-    var _this3 = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this));
+    var _this4 = _possibleConstructorReturn(this, (TodoApp.__proto__ || Object.getPrototypeOf(TodoApp)).call(this));
 
-    _this3.state = {
+    _this4.state = {
       todoitems: [],
       done: [],
       displaychoice: ""
     };
-    _this3.display = _this3.display.bind(_this3);
-    _this3.click = _this3.click.bind(_this3);
-    return _this3;
+    _this4.display = _this4.display.bind(_this4);
+    _this4.click = _this4.click.bind(_this4);
+    return _this4;
   }
 
   _createClass(TodoApp, [{
@@ -103,25 +136,22 @@ var TodoApp = function (_Component3) {
   }, {
     key: "todoitems_construction",
     value: function todoitems_construction() {
-      var _this4 = this;
+      var _this5 = this;
 
       var todoitemsbox = [];
       for (var i = 0; i < this.state.todoitems.length; ++i) {
         if (!this.state.done[i]) todoitemsbox.push(React.createElement(TodoItem, { cn: "active", value: this.state.todoitems[i], key: i, id: i }));else todoitemsbox.push(React.createElement(TodoItem, { cn: "completed", value: this.state.todoitems[i], key: i, id: i }));
       }
       if (this.state.displaychoice === "Completed") todoitemsbox = todoitemsbox.filter(function (v, i) {
-        return _this4.state.done[i];
+        return _this5.state.done[i];
       });else if (this.state.displaychoice === "Actived") todoitemsbox = todoitemsbox.filter(function (v, i) {
-        return !_this4.state.done[i];
+        return !_this5.state.done[i];
       });
       return React.createElement(
         "div",
         null,
         todoitemsbox
       );
-
-      // return <CountDisplay todoitems={this.todoitems} done={this.done} displaychoice={this.displaychoice}/>
-
 
       // return <div>
       //          this.state.todoitems.map(
@@ -153,8 +183,6 @@ var TodoApp = function (_Component3) {
   }, {
     key: "render",
     value: function render() {
-      var _this5 = this;
-
       return React.createElement(
         "div",
         null,
@@ -164,27 +192,7 @@ var TodoApp = function (_Component3) {
           { onClick: this.click },
           this.todoitems_construction()
         ),
-        React.createElement(
-          "button",
-          { type: "button", className: "display", onClick: function onClick() {
-              return _this5.display("All");
-            } },
-          "Display All"
-        ),
-        React.createElement(
-          "button",
-          { type: "button", className: "display", onClick: function onClick() {
-              return _this5.display("Completed");
-            } },
-          "Completed"
-        ),
-        React.createElement(
-          "button",
-          { type: "button", className: "display", onClick: function onClick() {
-              return _this5.display("Actived");
-            } },
-          "Actived"
-        )
+        React.createElement(CountDisplay, { display_filter: this.display })
       );
     }
   }]);

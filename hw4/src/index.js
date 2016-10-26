@@ -1,13 +1,19 @@
 const { Component } = React;
-
-
-
 class CountDisplay extends Component {
   constructor(props){
     super(props);
     this.state={
     };
   }
+  render()
+  {
+    return(
+    <div>
+        <button type="button" className="display" onClick={()=>this.props.display_filter("All")}>Display All</button>
+        <button type="button" className="display" onClick={()=>this.props.display_filter("Completed")}>Completed</button>
+        <button type="button" className="display" onClick={()=>this.props.display_filter("Actived")}>Actived</button>
+    </div>);
+  };
 
 }
 
@@ -68,9 +74,7 @@ class TodoApp extends Component {
               {todoitemsbox}
           </div>
 
-    // return <CountDisplay todoitems={this.todoitems} done={this.done} displaychoice={this.displaychoice}/>
-
-
+    
     // return <div>
     //          this.state.todoitems.map(
     //           (v,i) => (<TodoItem value={s}  id={i} destroy={this.delete}/>)
@@ -104,9 +108,8 @@ class TodoApp extends Component {
         <div>
           <input type="text" onKeyPress={this.push.bind(this)} /> 
           <div onClick={this.click}>{this.todoitems_construction()}</div>
-          <button type="button" className="display" onClick={()=>this.display("All")}>Display All</button>
-          <button type="button" className="display" onClick={()=>this.display("Completed")}>Completed</button>
-          <button type="button" className="display" onClick={()=>this.display("Actived")}>Actived</button>
+          <CountDisplay display_filter={this.display}/>
+
         </div>
     );
   }

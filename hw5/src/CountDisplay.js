@@ -13,6 +13,7 @@ class CountDisplay extends Component {
         <button type="button" className="display" onClick={()=>this.props.display_filter("All")}>Display All</button>
         <button type="button" className="display" onClick={()=>this.props.display_filter("Completed")}>Completed</button>
         <button type="button" className="display" onClick={()=>this.props.display_filter("Actived")}>Actived</button>
+
     </div>);
   };
 

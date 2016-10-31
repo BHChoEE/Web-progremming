@@ -156,7 +156,27 @@
 	          { onClick: this.click },
 	          this.todoitems_construction()
 	        ),
-	        _react2.default.createElement(CountDisplay, { display_filter: this.display })
+	        _react2.default.createElement(CountDisplay, { display_filter: this.display }),
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Active:',
+	            this.state.done.filter(function (v, i) {
+	              return v === false;
+	            }).length
+	          ),
+	          _react2.default.createElement(
+	            'div',
+	            null,
+	            'Completed:',
+	            this.state.done.filter(function (v, i) {
+	              return v === true;
+	            }).length
+	          )
+	        )
 	      );
 	    }
 	  }]);

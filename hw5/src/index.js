@@ -76,13 +76,14 @@ class TodoApp extends Component {
           <input type="text" onKeyPress={this.push.bind(this)} /> 
           <div onClick={this.click}>{this.todoitems_construction()}</div>
           <CountDisplay display_filter={this.display}/>
-
+          <div>
+            <div>Active:{this.state.done.filter((v,i)=>v===false).length}</div> 
+            <div>Completed:{this.state.done.filter((v,i)=>v===true).length}</div>
+          </div>
         </div>
     );
   }
 }
-
-
 
 ReactDOM.render (
   <TodoApp/>,

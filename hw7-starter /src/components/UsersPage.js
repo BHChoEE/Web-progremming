@@ -7,14 +7,16 @@ class UsersPage extends Component {
   componentDidMount() {
     fetch('/api/users')
       .then(res => res.json(), err => console.log(err))
-      .then(json => this.setState({ users: json.users }), err => console.log(err));
+      .then(json => this.setState({ users: json }), err => console.log(err));
   }
   render() {
-    console.log(this.state.users);
+    console.log(this.state.users,'render');
     return (
       <div>
         Users
-        { this.state.users.map((item, index) => <li key={index}><a href={`#/users/${index + 1}`}>User {index+1}</a></li>)}
+        { this.state.users.map((item, index) => <li key={index}><a href={`#/users/${index + 1}`}>
+          User {index+1}:{item.name}
+          </a></li>)}
       </div>
     );
   }

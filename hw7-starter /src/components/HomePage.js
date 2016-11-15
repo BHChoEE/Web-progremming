@@ -33,17 +33,24 @@ class HomePage extends Component {
   		name:name,
   		age:age  
   	};
-    console.log('u=', u);
+
+
+    console.log('u str=', JSON.stringify(u));
+
   	this.props.addAnUser(u);
-  	fetch('/users', {
-	  method: 'post',
-	  headers: {
-	    'Accept': 'application/json',
-	    'Content-Type': 'application/json',
-	  },
-	  body: JSON.stringify(u)
-    });
-    console.log(hI);
+
+
+fetch('api/userss', {
+  method: 'post',
+  body: JSON.stringify({
+    name: 'Hubot',
+    login: 'hubot',
+  }),
+})
+    .then( res =>{console.log(res);return res.json();} , err =>console.log(err,'err'))
+    .then(json=>console.log(json));
+
+    console.log('hI');
   }
   render() {
     return this.addUserForm();

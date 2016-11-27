@@ -33,6 +33,8 @@ class BattleField extends Component {
       hold:0,
       pause:true,
       started:false,
+      losed:false,
+      score:0
     }
   }
   init(){
@@ -44,6 +46,8 @@ class BattleField extends Component {
       hold:0,
       pause:false,
       started:true,
+      losed:false,
+      score:0
     });
     var x = new Array(10);
     for (let i = 0; i < 10; ++i)
@@ -72,22 +76,29 @@ class BattleField extends Component {
 
     var win = document.defaultView;
     win.addEventListener('keydown', (e)=>{
-      if (e.key==='ArrowUp')
-        this.rotate();
-      else if (e.key === 'ArrowDown')
-        this.down();
-      else if (e.key === 'ArrowLeft')
-        this.left();
-      else if (e.key === 'ArrowRight')
-        this.right();
-      else if (e.key === 'v' || e.key === ' ')
-        this.drop();
-      else if (e.key === 'c')
-        this.holdPiece();
-      else if (e.key === 'p')
-        this.setState({pause:!this.state.pause});
-      else if (e.key === 'z')
-        this.antiRotate();
+      if( this.state.started === true )
+      {   
+       if (e.key==='ArrowUp')
+            this.rotate();
+          else if (e.key === 'ArrowDown')
+            this.down();
+          else if (e.key === 'ArrowLeft')
+            this.left();
+          else if (e.key === 'ArrowRight')
+            this.right();
+          else if (e.key === 'v' || e.key === ' ')
+            this.drop();
+          else if (e.key === 'c')
+            this.holdPiece();
+          else if (e.key === 'p')
+            this.setState({pause:!this.state.pause});
+          else if (e.key === 'z')
+            this.antiRotate();
+      }
+      else if (e.key === 's')
+      {
+        this.setState({started:true,pause:false});
+      }
     });
     this.randomMakeBatch();
     this.constructNewPiece();
@@ -117,6 +128,7 @@ class BattleField extends Component {
     if (RowsNum!==0)
     {
       this.clearRow(beginRowNum,RowsNum);
+      this.setState({score:this.state.score+RowsNum});
     }
 
   }
@@ -141,6 +153,8 @@ class BattleField extends Component {
     this.state.runningPiece = x;
     this.setState({runningPiece:this.state.runningPiece});
     this.setState({piecesBatch:this.state.piecesBatch});
+    if( !this.state.runningPiece.check_if_not_be_blocked() )
+      this.setState({losed:true,pause:true});
     this.setPiece();
   }
   holdPiece() {
@@ -231,6 +245,7 @@ class BattleField extends Component {
           <li>'p':pause </li>
           <li>'z':anti rotate</li>
         </div>
+        <h8>Score:{this.state.score}</h8>
       </div>);
   }
   setPiece() {
@@ -280,6 +295,16 @@ class BattleField extends Component {
       // border:'10px',
       // font-size:'100',
     }
+    // const loserType = {
+    //   font-size : '10px';
+    // }
+    if(this.state.losed === true)
+      return <div className="row bntType">
+              <button onClick={()=>{this.init();}} type="button" className="btn btn-primary Start col-xs-5 restart" >
+                <p className="loserType loser">Score:{this.state.score}</p>
+                <p className="loserType">restart</p>
+              </button>
+    </div>
     if( this.state.started == false )
       return  <div className="row bntType" style={bntType} >
                 <button onClick={()=>{this.setState({started:true,pause:false})}} type="button" 
@@ -301,6 +326,7 @@ class BattleField extends Component {
                 <button onClick={()=>{this.setState({pause:true})}}type="button" 
                 className="btn btn-primary col-xs-6 pause active" aria-pressed="false" >Pause</button>
               </div>
+
   }
   render() {
     const test={

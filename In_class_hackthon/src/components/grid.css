@@ -8,6 +8,15 @@
 		border-radius: 10px;
 		
 	}
+	.loserType{
+		font-size: 15px;
+	}
+
+	.loser
+	{
+		color:red;
+	}
+
 	.rounded{
 		background: #999966;
 		border: 0.1px;

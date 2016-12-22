@@ -1,0 +1,13 @@
+.right {
+	float:right;
+	height: 5em;
+	/*background: red;*/
+}
+
+.sign {
+	height: 3em;
+	width: 5em;
+	margin-right: 0.5em;
+	margin-top:0.5em;
+	display: inline-block;
+}

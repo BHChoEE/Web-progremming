@@ -1,0 +1,6 @@
+SELECT * FROM users;
+mysqlshow -u blogadmin -p blog_development;
+
+delete from users where id='1';
+mysql -u root -p
+

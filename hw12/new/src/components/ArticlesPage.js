@@ -12,7 +12,7 @@ class ArticlesPage extends Component {
   }
 
   componentDidMount() {
-    fetch('/api/articles')
+    fetch(`/api/articles/oneuser/${this.props.userId}`)
       .then(res => res.json())
       .then(json => {
         this.setState({

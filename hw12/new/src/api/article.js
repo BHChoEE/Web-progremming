@@ -6,12 +6,11 @@ const { articles, Tag, articlesTag } = models;
 
 const articleRouter = new Router();
 
-articleRouter.get('/', async (req, res) => {
-  console.log('articles',articles);
+articleRouter.get('/oneuser/:userId', async (req, res) => {
   try {
-    const articles = await articles.all();
-
-    res.json(articles);
+    console.log('req.params.userId',req.params.userId);
+    const article = await articles.findAll({where:{userId:req.params.userId}});
+    res.json(article);
   } catch (err) {
     console.error(err);
   }

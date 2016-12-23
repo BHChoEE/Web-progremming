@@ -25,7 +25,7 @@ class App extends Component {
 
   renderRoute() {
     if (this.state.route === '/articles') {
-      return <ArticlesPage/>;
+      return <ArticlesPage userId={this.state.userId} />;
     } else if (this.state.route === '/articles/new') {
       return <CreateArticlePage userId={this.state.userId} />;
     } else if (this.state.route.startsWith('/articles/')) {
